@@ -16,7 +16,7 @@ tags:
 
 <br><br>
 
-~~~
+~~~sql
 SELECT country,
 COUNT(ContactName) FROM Customers
 WHERE ContactName LIKE 'A%'
