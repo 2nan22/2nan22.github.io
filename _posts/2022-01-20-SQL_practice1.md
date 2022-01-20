@@ -56,10 +56,10 @@ GROUP BY CustomerID;
 <br>
 
 ```sql
-SELECT Orders.CustomerID, COUNT(OrderDetails.Quantity)
-FROM OrderDetails, Orders
-WHERE OrderDetails.OrderID = Order.OrderID
-GROUP BY CustomerID;
+SELECT Orders.OrderDate, COUNT(OrderDetails.Quantity)
+FROM Orders, Employees, OrderDetails
+WHERE Orders.EmployeeID = Employees.EmployeeID
+GROUP BY OrderDate;
 ```
 
 <br>
@@ -79,9 +79,10 @@ FROM Orders, Employees, OrderDetails
 WHERE Orders.EmployeeID = Employees.EmployeeID
 GROUP BY Employees.EmployeeID;
 ```
+
 <br>
 
-<!-- ![3-2번 문제 결과](/assets/images/SQL_practce1_3-2.png) -->
+![3-2번 문제 결과](/assets/images/SQL_practce1_3-2.png)
 
 <br>
 
