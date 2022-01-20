@@ -34,9 +34,9 @@ GROUP BY country;
 <br><br>
 
 ```sql
-SELECT Orders.CustomerID, COUNT(OrderDetails.Quantity)
-FROM OrderDetails, Orders
-WHERE OrderDetails.OrderID = Order.OrderID
+SELECT O.CustomerID, COUNT(OD.Quantity)
+FROM OrderDetails AS OD, Orders AS O
+WHERE OD.OrderID = O.OrderID
 GROUP BY CustomerID;
 ```
 
@@ -56,9 +56,10 @@ GROUP BY CustomerID;
 <br>
 
 ```sql
-SELECT Orders.OrderDate, COUNT(OrderDetails.Quantity)
-FROM Orders, Employees, OrderDetails
-WHERE Orders.EmployeeID = Employees.EmployeeID
+SELECT O.OrderDate,
+	COUNT(OD.Quantity)
+FROM Orders AS O, Employees AS E, OrderDetails AS OD
+WHERE O.EmployeeID = E.EmployeeID
 GROUP BY OrderDate;
 ```
 
@@ -73,11 +74,11 @@ GROUP BY OrderDate;
 <br>
 
 ```sql
-SELECT Orders.EmployeeID, Employees.FirstName, 
-COUNT(OrderDetails.Quantity)
-FROM Orders, Employees, OrderDetails
-WHERE Orders.EmployeeID = Employees.EmployeeID
-GROUP BY Employees.EmployeeID;
+SELECT O.EmployeeID, 
+	COUNT(OD.Quantity)
+FROM Orders AS O, Employees AS E, OrderDetails AS OD
+WHERE O.EmployeeID = E.EmployeeID
+GROUP BY E.EmployeeID;
 ```
 
 <br>
