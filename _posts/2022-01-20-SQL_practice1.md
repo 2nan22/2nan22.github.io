@@ -16,11 +16,12 @@ tags:
 
 <br><br>
 
-``` SELECT country,
-    COUNT(ContactName) FROM Customers
-    WHERE ContactName LIKE 'A%'
-    GROUP BY country; 
-```
+~~~
+SELECT country,
+COUNT(ContactName) FROM Customers
+WHERE ContactName LIKE 'A%'
+GROUP BY country; 
+~~~
 
 <br>
 
