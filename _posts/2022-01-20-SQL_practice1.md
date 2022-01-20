@@ -16,12 +16,12 @@ tags:
 
 <br><br>
 
-~~~sql
+```sql
 SELECT country,
 COUNT(ContactName) FROM Customers
 WHERE ContactName LIKE 'A%'
 GROUP BY country; 
-~~~
+```
 
 <br>
 
