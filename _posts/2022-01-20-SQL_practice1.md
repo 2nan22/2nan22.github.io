@@ -25,14 +25,59 @@ GROUP BY country;
 
 <br>
 
-![alt text](/assets/images/SQL_practce1_1.png)
+![1번 문제 결과](/assets/images/SQL_practce1_1.png)
 
 <br>
 
 # 2. Customer 별로 Order한 Product의 총 Quantity를 세는 쿼리를 작성하세요.
 
+<br><br>
+
+```sql
+SELECT Orders.CustomerID, COUNT(OrderDetails.Quantity)
+FROM OrderDetails, Orders
+WHERE OrderDetails.OrderID = Order.OrderID
+GROUP BY CustomerID;
+```
+
+<br>
+
+![2번 문제 결과](/assets/images/SQL_practce1_2.png)
+
+<br>
 
 
 # 3. 년월별, Employee별로 Product를 몇 개씩 판매했는지를 표시하는 쿼리를 작성하세요.
+
+<br><br>
+
+```sql
+SELECT Orders.EmployeeID, Employees.FirstName, 
+COUNT(OrderDetails.Quantity)
+FROM Orders, Employees, OrderDetails
+WHERE Orders.EmployeeID = Employees.EmployeeID
+GROUP BY Employees.EmployeeID;
+```
+
+<br>
+
+![3-1번 문제 결과](/assets/images/SQL_practce1_3-1.png)
+
+<br>
+
+<br><br>
+<!-- 
+```sql
+SELECT Orders.CustomerID, COUNT(OrderDetails.Quantity)
+FROM OrderDetails, Orders
+WHERE OrderDetails.OrderID = Order.OrderID
+GROUP BY CustomerID;
+``` -->
+
+<br>
+<!-- 
+![3-2번 문제 결과](/assets/images/SQL_practce1_3-2.png) -->
+
+<br>
 
 ---
