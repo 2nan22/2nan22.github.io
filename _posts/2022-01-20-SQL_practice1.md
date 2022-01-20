@@ -83,7 +83,7 @@ GROUP BY E.EmployeeID;
 
 <br>
 
-![3-2번 문제 결과](/assets/images/SQL_practce1_3-2.png)
+![3-2번 문제 결과](/assets/images/SQL_practice1_3-2.png)
 
 <br>
 
