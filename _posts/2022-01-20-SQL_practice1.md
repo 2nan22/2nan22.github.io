@@ -25,7 +25,7 @@ GROUP BY country;
 
 <br>
 
-![1번 문제 결과](/assets/images/SQL_practce1_1.png)
+![1번 문제 결과](/assets/images/SQL_practice1_1.png)
 
 <br>
 
@@ -42,7 +42,7 @@ GROUP BY CustomerID;
 
 <br>
 
-![2번 문제 결과](/assets/images/SQL_practce1_2.png)
+![2번 문제 결과](/assets/images/SQL_practice1_2.png)
 
 <br>
 
@@ -50,6 +50,8 @@ GROUP BY CustomerID;
 # 3. 년월별, Employee별로 Product를 몇 개씩 판매했는지를 표시하는 쿼리를 작성하세요.
 
 <br><br>
+
+### 3-1 Employee별 Product 개수
 
 ```sql
 SELECT Orders.EmployeeID, Employees.FirstName, 
@@ -61,11 +63,13 @@ GROUP BY Employees.EmployeeID;
 
 <br>
 
-![3-1번 문제 결과](/assets/images/SQL_practce1_3-1.png)
+![3-1번 문제 결과](/assets/images/SQL_practice1_3-1.png)
 
 <br>
 
-<br><br>
+### 3-2 연월별 Product 개수
+
+<br>
 <!-- 
 ```sql
 SELECT Orders.CustomerID, COUNT(OrderDetails.Quantity)
