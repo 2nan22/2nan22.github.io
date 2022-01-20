@@ -51,14 +51,15 @@ GROUP BY CustomerID;
 
 <br><br>
 
-### 3-1 Employee별 Product 개수
+### 3-1 연월별 Product 개수
+
+<br>
 
 ```sql
-SELECT Orders.EmployeeID, Employees.FirstName, 
-COUNT(OrderDetails.Quantity)
-FROM Orders, Employees, OrderDetails
-WHERE Orders.EmployeeID = Employees.EmployeeID
-GROUP BY Employees.EmployeeID;
+SELECT Orders.CustomerID, COUNT(OrderDetails.Quantity)
+FROM OrderDetails, Orders
+WHERE OrderDetails.OrderID = Order.OrderID
+GROUP BY CustomerID;
 ```
 
 <br>
@@ -67,20 +68,20 @@ GROUP BY Employees.EmployeeID;
 
 <br>
 
-### 3-2 연월별 Product 개수
+### 3-2 Employee별 Product 개수
 
 <br>
-<!-- 
+
 ```sql
-SELECT Orders.CustomerID, COUNT(OrderDetails.Quantity)
-FROM OrderDetails, Orders
-WHERE OrderDetails.OrderID = Order.OrderID
-GROUP BY CustomerID;
-``` -->
-
+SELECT Orders.EmployeeID, Employees.FirstName, 
+COUNT(OrderDetails.Quantity)
+FROM Orders, Employees, OrderDetails
+WHERE Orders.EmployeeID = Employees.EmployeeID
+GROUP BY Employees.EmployeeID;
+```
 <br>
-<!-- 
-![3-2번 문제 결과](/assets/images/SQL_practce1_3-2.png) -->
+
+<!-- ![3-2번 문제 결과](/assets/images/SQL_practce1_3-2.png) -->
 
 <br>
 
