@@ -14,14 +14,17 @@ tags:
 
 # 1. Country 별로 ContactName이 ‘A’로 시작하는 Customer의 숫자를 세는 쿼리를 작성하세요.
 
-''' SELECT country,
+<br><br>
+
+``` SELECT country,
     COUNT(ContactName) FROM Customers
     WHERE ContactName LIKE 'A%'
-    GROUP BY country; '''
+    GROUP BY country; 
+```
 
 <br>
 
-![alt text](/assets/images/SQL_practice1_1.png)
+![alt text](/assets/images/SQL_practce1_1.png)
 
 <br>
 

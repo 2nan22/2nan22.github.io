@@ -1,14 +1,13 @@
 ---
-title: SQL 기초 문법1
+title: How to Install and use WhatATheme?
 layout: post
-post-image: https://media.vlpt.us/images/dms873/post/e99e7c29-6dd1-4c4c-ae6f-57326892a60a/SQL.png
-description: SQL 테이블 구조, select, groupby, order, join과 관련된 내용 학습
+post-image: https://raw.githubusercontent.com/thedevslot/WhatATheme/master/assets/images/How%20to%20install%20and%20use%20WhatATheme.png?token=AHMQUEPHRKQFL5FS624RDJ26Z64HK
+description: This post will guide you to install WhatATheme on your Jekyll site, follow
+  the easy steps to set up WhatATheme.
 tags:
-- SQL
-- select
-- groupby
-- order
-- join
+- how to
+- setup
+- theme
 ---
 
 # What is WhatATheme?
