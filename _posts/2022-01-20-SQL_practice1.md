@@ -1,5 +1,5 @@
 ---
-title: [SQL] SQL 기초 문법1
+title: SQL 기초 문법1
 layout: post
 post-image: https://media.vlpt.us/images/dms873/post/e99e7c29-6dd1-4c4c-ae6f-57326892a60a/SQL.png
 description: SQL 테이블 구조, select, groupby, order, join과 관련된 내용 학습
@@ -9,12 +9,6 @@ tags:
 - groupby
 - order
 - join
-
-author_profile: true
-
-toc: true
-toc_sticky: true
-toc_icon: true
 ---
 
 
@@ -27,7 +21,7 @@ toc_icon: true
 
 <br>
 
-![alt text](/assets/images//SQL_practice1/1.png)
+![alt text](/assets/images/SQL_practice1_1.png)
 
 <br>
 
