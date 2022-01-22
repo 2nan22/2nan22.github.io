@@ -38,10 +38,10 @@ author-name: 2nan22
 # URL for the Image of the Author
 author-image: /assets/images/profile.jpg
 # 60 Words About the Author
-author-about: 
-  -- 인하대 글로벌금융학과 졸업|
-  -- 빅데이터 기반 인공지능융합 개발자 과정 수료| 
-  -- 고양시 빅데이터 인턴|
+author-about: >
+  -- 인하대 글로벌금융학과 졸업,
+  -- 빅데이터 기반 인공지능융합 개발자 과정 수료,
+  -- 고양시 빅데이터 인턴
 # URL to the Author's Profile (i.e., Github, Twitter, Stackoverflow, etc)
 author-url: https://github.com/2nan22
 
