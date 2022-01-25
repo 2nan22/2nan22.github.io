@@ -96,9 +96,13 @@ GROUP BY OrderDate;
 >#### 우선 문제의 핵심은, 연/월/일 형태로 되어 있는 OrderDate을 어떻게 연/월 형태로 바꿀지를 고민하는 문제. <br>
 => MySQL에서는 date_format() 등의 함수를 많이 쓰는데, 해당 실습 환경에선 날짜를 문자로 보고 substr() 함수를 사용 가능 <br>
 #### 두 기준으로 동시에 group by를 하기 위해서는 두 기준을 group by 절에 모두 명시
+
 <br>
 
 ![리뷰 후 결과](/assets/images/SQL_practice1_review_3-1.png)
+
+=> substr(문자열, 시작 위치, 나타낼 개수) slice를 해주는 함수
+=> AS를 사용하지 않고 뒤에 공백 후 붙여주기만 해도 별칭이 형성되는 것 같다.
 
 <br>
 
