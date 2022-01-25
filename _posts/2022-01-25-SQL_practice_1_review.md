@@ -32,12 +32,9 @@ GROUP BY country;
 ## review
 
 >
-### Count 안에 컬럼명을 넣으면 그 컬럼 값에 null이 있을 때는 카운트를 하지 않고, 컬럼명이 없으면 null이 있어도 카운트를 합니다.
-<br>
-=> 컬럼명이 없을 때는 그냥 row 수를 세는 것
-<br>
-
-### 보통 전체적인 row 수를 파악하는 것이 더 중요한 경우가 많아 count(1) 혹은 count(*)를 주로 사용. 두 가지는 서로 차이가 없다고 해도 무방하다.
+#### Count 안에 컬럼명을 넣으면 그 컬럼 값에 null이 있을 때는 카운트를 하지 않고, 컬럼명이 없으면 null이 있어도 카운트를 합니다. <br>
+=> 컬럼명이 없을 때는 그냥 row 수를 세는 것 <br>
+#### 보통 전체적인 row 수를 파악하는 것이 더 중요한 경우가 많아 count(1) 혹은 count(*)를 주로 사용. 두 가지는 서로 차이가 없다고 해도 무방하다.
 
 <br>
 
@@ -64,12 +61,10 @@ GROUP BY CustomerID;
 
 ## review
 
->### 콤마(,)를 통해서 조인을 해주면 inner join이 된다. 보통, 제일 기준이 되는 테이블을 맨 왼쪽에 두고 left join을 제일 많이 쓰고, inner join은 말 그대로 교집합을 검사하고 싶은 경우나 중복을 제거하기 위한 기술적인 목적으로 가끔 사용
-<br>
-=> 이 경우에는 inner join이나 left join 둘 다 사용해도 크게 무방
-<br>
+>#### 콤마(,)를 통해서 조인을 해주면 inner join이 된다. 보통, 제일 기준이 되는 테이블을 맨 왼쪽에 두고 left join을 제일 많이 쓰고, inner join은 말 그대로 교집합을 검사하고 싶은 경우나 중복을 제거하기 위한 기술적인 목적으로 가끔 사용. <br>
+=> 이 경우에는 inner join이나 left join 둘 다 사용해도 크게 무방 <br>
+#### 총 Quantitiy를 계산하기 위해 이 경우에는 count()보다 sum()이 더 적절하다.
 
-### 총 Quantitiy를 계산하기 위해 이 경우에는 count()보다 sum()이 더 적절하다.
 <br>
 
 ![리뷰 후 결과](/assets/images/SQL_practice1_review_2.png)
@@ -79,9 +74,10 @@ GROUP BY CustomerID;
 
 # 3. 년월별, Employee별로 Product를 몇 개씩 판매했는지를 표시하는 쿼리를 작성하세요.
 
+
 <br><br>
 
-### 3-1 연월별 Product 개수
+## 기존 답안
 
 <br>
 
@@ -95,25 +91,14 @@ GROUP BY OrderDate;
 
 <br>
 
-![3-1번 문제 결과](/assets/images/SQL_practice1_3-1.png)
+## review
 
+>#### 우선 문제의 핵심은, 연/월/일 형태로 되어 있는 OrderDate을 어떻게 연/월 형태로 바꿀지를 고민하는 문제. <br>
+=> MySQL에서는 date_format() 등의 함수를 많이 쓰는데, 해당 실습 환경에선 날짜를 문자로 보고 substr() 함수를 사용 가능 <br>
+#### 두 기준으로 동시에 group by를 하기 위해서는 두 기준을 group by 절에 모두 명시
 <br>
 
-### 3-2 Employee별 Product 개수
-
-<br>
-
-```sql
-SELECT O.EmployeeID, 
-	COUNT(OD.Quantity)
-FROM Orders AS O, Employees AS E, OrderDetails AS OD
-WHERE O.EmployeeID = E.EmployeeID
-GROUP BY E.EmployeeID;
-```
-
-<br>
-
-![3-2번 문제 결과](/assets/images/SQL_practice1_3-2.png)
+![리뷰 후 결과](/assets/images/SQL_practice1_review_3-1.png)
 
 <br>
 
