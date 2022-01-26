@@ -102,7 +102,7 @@ GROUP BY OrderDate;
 ![리뷰 후 결과](/assets/images/SQL_practice1_review_3-1.png)
 
 => substr(문자열, 시작 위치, 나타낼 개수) slice를 해주는 함수
-=> AS를 사용하지 않고 뒤에 공백 후 붙여주기만 해도 별칭이 형성되는 것 같다.
+=> AS를 사용하지 않고 뒤에 공백 후 붙여주기만 해도 별칭이 형성
 
 <br>
 
