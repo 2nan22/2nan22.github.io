@@ -1,5 +1,5 @@
 ---
-title: SQL 기초 문법2
+title: SQL 기초 문법2_review
 layout: post
 post-image: https://media.vlpt.us/images/dms873/post/e99e7c29-6dd1-4c4c-ae6f-57326892a60a/SQL.png
 description: SQL 테이블 구조, select, groupby, order, join과 관련된 내용 학습
@@ -159,29 +159,41 @@ Feedback 4)
 
 <br><br>
 
-## Feedback 적용 답안
+## Feedback 적용 답안 1) join을 사용할 경우
 
 <br>
 
 ```sql
-select o.customer_id, 
-    count(distinct o.id) order_cnt, 
-    count(distinct p.category) category_cnt, 
-    sum(od.quantity * od.unit_price) sum_of_order_price
+select o.id, os.id, os.status_name
 from orders o
-    left join order_details od on o.id = od.order_id
-    left join products p on od.product_id = p.id
-where '2006-01-01' <= o.order_date
-    and o.order_date < '2006-04-01'
-group by o.customer_id;
+    left join orders_status os on o.status_id = os.id
+where '2006-03-01' <= o.order_date 
+    and o.order_date < '2006-04-01';
 ```
 <br><br>
 
-![3번 Feedback 결과](/assets/images/SQL_practice2_review_2.png)
+## Feedback 적용 답안 2) sub-query를 사용할 경우
+
+<br>
+
+```sql
+select id, status_id, (select status_name from orders_status os where os.id = o.status_id) status_name
+from orders o
+where '2006-03-01' <= order_date 
+    and order_date < '2006-04-01';
+```
+<br><br>
+
+![3번 Feedback 결과](/assets/images/SQL_practice2_review_3.png)
 
 <br><br>
+
 # 4. 2006년 1분기 동안 세 번 이상 주문(order) 된 상품(product)과 그 상품의 주문 수를 찾는 쿼리를 작성하세요. (order_status는 신경쓰지 않으셔도 됩니다.) (힌트: sub-query or having)
 
+
+<br>
+
+## 기존 답안
 
 <br>
 
@@ -198,12 +210,143 @@ group by order_date;
 
 <!-- ![3-2번 문제 결과](/assets/images/SQL_practice1_3-2.png) -->
 
+<br><br>
+
+Feedback 1)
+
 <br>
+
+>이 문제는 1. 상품별 주문 수 찾기, 2. 주문 수가 세 번 이상인 것 찾기 의 두 단계로 접근할 수 있는 문제입니다. 첫 번째 예시답안은 이 두 단계를 서브 쿼리를 이용해 그대로 구현한 것이구요. 두 번째 예시답안은 이를 having을 이용해 쿼리를 더욱 간결하게 만들어 준 모습입니다.
+
+<br>
+
+Feedback 2)
+
+<br>
+
+>Having은 ***집계함수의 결과에 조건을 거는 문법***입니다. 이 문제에서 처럼 count()가 되어질 결과에 미리 having을 통해 조건을 걸 수 있습니다.
+
+<br><br>
+
+## Feedback 적용 답안 1) sub-query를 사용할 경우
+
+<br>
+
+```sql
+select *
+from (
+    select product_id, count(distinct o.id) cnt
+    from orders o
+        left join order_details od on o.id = od.order_id
+    where '2006-01-01' <= order_date 
+        and order_date < '2006-04-01'
+    group by product_id
+    ) a
+where cnt >= 3;
+```
+<br><br>
+
+## Feedback 적용 답안 2) having을 사용할 경우
+
+<br>
+
+```sql
+select product_id, count(distinct o.id) cnt
+from orders o
+    left join order_details od on o.id = od.order_id
+where '2006-01-01' <= order_date 
+    and order_date < '2006-04-01'
+group by product_id
+having count(distinct o.id) >= 3;
+```
+<br><br>
+
+![4번 Feedback 결과](/assets/images/SQL_practice2_review_4.png)
+
+<br><br>
 
 # 5-1. 2006년 1분기, 2분기 연속으로 주문(order)을 받은 직원(employee)을 찾는 쿼리를 작성하세요. (order_status는 신경쓰지 않으셔도 됩니다.) (힌트: sub-query, inner join)
 
 <br><br>
 
+Feedback)
+
+<br>
+
+>***Inner join을 통해 교집합을 구현하는 것***이 핵심인 문제였습니다. 1분기에 주문을 받은 직원과 2분기에 주문을 받은 직원을 subquery를 통해 각각 따로 만든 다음 inner join을 통해 그 둘의 교집합을 계산하면 됩니다.
+
+
+<br><br>
+
+## Feedback 적용 답안 
+
+<br>
+
+```sql
+select o1.employee_id
+from 
+    (select distinct employee_id
+    from orders
+    where '2006-01-01' <= order_date 
+        and order_date < '2006-04-01') o1
+        
+    inner join
+    
+    (select distinct employee_id
+    from orders
+    where '2006-04-01' <= order_date 
+        and order_date < '2006-07-01') o2
+        
+    on o1.employee_id = o2.employee_id;
+```
+<br><br>
+
+![5-1번 Feedback 결과](/assets/images/SQL_practice2_review_5-1.png)
+
+<br><br>
+
 # 5-2. 2006년 1분기, 2분기 연속으로 주문(order)을 받은 직원(employee) 별로, 2006년 월별 주문 수를 찾는 쿼리를 작성하세요. (order_status는 신경쓰지 않으셔도 됩니다.) (힌트: sub-query 중첩, date_format() )
+
+<br><br>
+
+Feedback)
+
+<br>
+
+>5-1에서 작성한 쿼리를 활용해 조건을 만족하는 특정 employee를 골라내기만 하면 나머지 부분은 비교적 쉽게 작성할 수 있는 문제였습니다. 
+연월별로, 직원별로 집계를 하기 위해서 이 기준으로 group by를 해줘야 합니다.
+참고로 ***group by 1, 2는 select 절에 있는 첫 번째, 두 번째 컬럼으로 group by를 하겠다는 의미***로 쿼리를 편하게 줄여서 쓴 것입니다. 이런 편의 기능도 사용해 보셔도 좋을 것 같습니다.
+
+
+<br><br>
+
+## Feedback 적용 답안 
+
+<br>
+
+```sql
+select employee_id, date_format(order_date, '%Y-%m') ym, count(1) cnt
+from orders
+where employee_id in (
+    select o1.employee_id
+        from 
+            (select distinct employee_id
+            from orders
+            where '2006-01-01' <= order_date 
+                and order_date < '2006-04-01') o1
+            inner join
+            (select distinct employee_id
+            from orders
+            where '2006-04-01' <= order_date 
+                and order_date < '2006-07-01') o2
+            on o1.employee_id = o2.employee_id
+        )
+group by 1, 2;
+```
+<br><br>
+
+![5-2번 Feedback 결과](/assets/images/SQL_practice2_review_5-2.png)
+
+<br><br>
 
 ---
